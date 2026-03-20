@@ -3,7 +3,10 @@
 
 # Allow tracked files
 !.gitignore
+!.containerignore
 !LICENSE
 !Containerfile
 !renovate.json
 !README.md
+!CODEOWNERS
+!OWNERS
