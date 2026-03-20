@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Allow tracked files
+!.gitignore
+!LICENSE
+!Containerfile
+!renovate.json
+!README.md
