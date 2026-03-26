@@ -26,6 +26,8 @@ spec:
     value: quay.io/redhat-user-workloads/konflux-infra-tenant/ci-terraform-runner-aa772:{{revision}}
   - name: dockerfile
     value: Containerfile
+  - name: build-source-image
+    value: "true"
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
