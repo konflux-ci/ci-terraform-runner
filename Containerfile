@@ -1,7 +1,7 @@
-FROM registry.access.redhat.com/ubi10/go-toolset:latest
+FROM registry.access.redhat.com/ubi10/go-toolset@sha256:cba9484f1b22d86b306afebf1db5f42b968ae3130aef7d99c83de753a016d0a7
 
 # renovate: datasource=github-releases depName=hashicorp/terraform
-ARG TERRAFORM_VERSION=1.14.7
+ARG TERRAFORM_VERSION=1.14.9
 
 USER 0
 
