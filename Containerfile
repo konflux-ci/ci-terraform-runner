@@ -2,8 +2,6 @@ FROM registry.access.redhat.com/ubi10/go-toolset@sha256:cba9484f1b22d86b306afebf
 
 # renovate: datasource=github-releases depName=hashicorp/terraform
 ARG TERRAFORM_VERSION=1.14.9
-# renovate: datasource=github-releases depName=hashicorp/vault
-ARG VAULT_VERSION=1.21.4
 
 USER 0
 
@@ -21,16 +19,6 @@ RUN ARCH="$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')" && \
     (cd /tmp && sha256sum -c terraform_checksum) && \
     unzip /tmp/${ZIP} -d /usr/local/bin/ && \
     rm /tmp/${ZIP} /tmp/terraform_SHA256SUMS /tmp/terraform_checksum
-
-# Vault CLI (download + verify checksum from HashiCorp)
-RUN ARCH="$(uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')" && \
-    ZIP="vault_${VAULT_VERSION}_linux_${ARCH}.zip" && \
-    curl -fsSL "https://releases.hashicorp.com/vault/${VAULT_VERSION}/${ZIP}" -o /tmp/${ZIP} && \
-    curl -fsSL "https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_SHA256SUMS" -o /tmp/vault_SHA256SUMS && \
-    grep -F "${ZIP}" /tmp/vault_SHA256SUMS > /tmp/vault_checksum && \
-    (cd /tmp && sha256sum -c vault_checksum) && \
-    unzip -o /tmp/${ZIP} -d /usr/local/bin/ && \
-    rm /tmp/${ZIP} /tmp/vault_SHA256SUMS /tmp/vault_checksum
 
 # AWS CLI v2
 RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o /tmp/awscli.zip && \
